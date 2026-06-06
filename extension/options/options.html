@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>claude-shot · settings</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <main>
+      <h1>claude-shot</h1>
+      <p class="hint">Tap the toolbar icon (or press <kbd>⌘⇧0</kbd>) to capture the visible tab.</p>
+
+      <section class="row">
+        <label class="toggle">
+          <input type="checkbox" id="auto-paste" />
+          <span>Auto-paste into a terminal (requires the helper)</span>
+        </label>
+        <p class="sub">
+          When on, Send activates your terminal and pastes the screenshot for you — no manual ⌘V.
+          Requires running <code>host/scripts/install.sh</code> and granting Accessibility.
+        </p>
+
+        <div class="indent">
+          <label class="field">
+            <span>Target app</span>
+            <select id="target-bundle">
+              <option value="com.apple.Terminal">Terminal.app</option>
+              <option value="com.googlecode.iterm2">iTerm2</option>
+              <option value="com.microsoft.VSCode">VS Code</option>
+              <option value="com.microsoft.VSCodeInsiders">VS Code Insiders</option>
+              <option value="com.todesktop.230313mzl4w4u92">Cursor</option>
+              <option value="dev.warp.Warp-Stable">Warp</option>
+              <option value="com.github.wez.wezterm">WezTerm</option>
+              <option value="net.kovidgoyal.kitty">kitty</option>
+              <option value="com.anthropic.claudefordesktop">Claude Desktop</option>
+            </select>
+          </label>
+          <p class="sub">
+            The app must be running with a Claude (Code) session focused. In VS Code / Cursor,
+            click into the terminal pane first — ⌘V into the editor pane will paste into the editor.
+          </p>
+
+          <div class="helper-status" id="helper-status">
+            <span class="dot" id="helper-dot"></span>
+            <span id="helper-text">Checking helper…</span>
+            <button type="button" id="helper-recheck" class="linkbtn">recheck</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="row">
+        <label class="toggle">
+          <input type="checkbox" id="direct-paste" />
+          <span>Paste directly into Claude.ai when the active tab is claude.ai</span>
+        </label>
+        <p class="sub">When off, claude.ai tabs use the system clipboard like everything else.</p>
+      </section>
+
+      <section class="row">
+        <label class="toggle">
+          <input type="checkbox" id="default-area" />
+          <span>Open crop mode automatically every time</span>
+        </label>
+        <p class="sub">Off by default — the popup captures the whole visible tab and you crop from the preview if you want.</p>
+      </section>
+
+      <section class="footer">
+        <span id="saved" class="saved" hidden>Saved</span>
+        <span class="hint-mini">Change the shortcut at <code>chrome://extensions/shortcuts</code></span>
+      </section>
+    </main>
+    <script src="options.js" type="module"></script>
+  </body>
+</html>

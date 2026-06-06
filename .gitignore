@@ -1,0 +1,10 @@
+# macOS
+.DS_Store
+
+# Build artifacts
+dist/
+host/.build/
+
+# Editor junk
+*.swp
+*~

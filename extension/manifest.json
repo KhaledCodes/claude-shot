@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "claude-shot",
+  "version": "0.1.1",
+  "description": "Screenshot a tab and send it straight into Claude in one click.",
+  "permissions": ["activeTab", "scripting", "storage", "downloads", "notifications", "offscreen", "clipboardWrite", "nativeMessaging"],
+  "action": {
+    "default_title": "Send screenshot to Claude",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": false
+  },
+  "commands": {
+    "capture-visible": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+0",
+        "mac": "Command+Shift+0"
+      },
+      "description": "Capture + preview"
+    },
+    "capture-and-send": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+9",
+        "mac": "Command+Shift+9"
+      },
+      "description": "Capture + send instantly (no preview)"
+    }
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  }
+}

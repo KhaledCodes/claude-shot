@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>claude-shot</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="frame" id="frame">
+      <header class="bar">
+        <span class="brand">claude-shot</span>
+        <span class="from-row">
+          <span class="muted">from</span>
+          <span class="from" id="captured-from">…</span>
+          <button id="retake" class="iconbtn" type="button" title="Retake screenshot">↻</button>
+          <button id="settings" class="iconbtn" type="button" title="Open settings">⚙</button>
+        </span>
+      </header>
+
+      <div class="stage" id="stage">
+        <div class="placeholder" id="placeholder">Capturing…</div>
+        <img id="preview" alt="screenshot preview" hidden />
+        <div class="crop-overlay" id="crop-overlay" hidden>
+          <div class="crop-rect" id="crop-rect"></div>
+        </div>
+      </div>
+
+      <div class="error" id="error" hidden></div>
+
+      <div class="result" id="result" hidden>
+        <div class="result-icon" id="result-icon"></div>
+        <div class="result-text" id="result-text"></div>
+        <div class="result-sub" id="result-sub"></div>
+      </div>
+
+      <div class="actions">
+        <button id="cancel" class="btn ghost" type="button">Cancel</button>
+        <button id="crop" class="btn ghost" type="button" hidden>Crop</button>
+        <button id="crop-done" class="btn ghost" type="button" hidden>Use crop</button>
+        <button id="crop-cancel" class="btn ghost" type="button" hidden>Reset</button>
+        <button id="send" class="btn primary" type="button" disabled>Send</button>
+      </div>
+
+      <div class="toast" id="toast" hidden></div>
+    </div>
+
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>
