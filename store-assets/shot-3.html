@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><style>
+  :root{--bg:#1c1c1e;--panel:#232326;--text:#f2f2f2;--muted:#9a9aa0;
+    --accent:#d97757;--border:#2f2f33;}
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;width:1280px;height:800px;overflow:hidden;
+    font:13px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;}
+  .canvas{position:relative;width:1280px;height:800px;
+    background:radial-gradient(1100px 720px at 80% 110%, #3a2218 0%, #16161a 55%, #111114 100%);
+    display:flex;flex-direction:column;align-items:center;}
+  .headline{margin-top:54px;text-align:center;color:#fff;}
+  .headline h1{margin:0;font-size:42px;font-weight:700;letter-spacing:-0.5px;}
+  .headline h1 .hl{color:var(--accent);}
+  .headline p{margin:13px 0 0;font-size:19px;color:#c7c2bf;}
+  .panelwrap{margin-top:36px;transform:scale(1.28);transform-origin:top center;}
+  /* real options styling */
+  main{padding:18px 22px;width:540px;background:var(--bg);border:1px solid var(--border);
+    border-radius:14px;box-shadow:0 40px 90px rgba(0,0,0,.55);}
+  h2.t{font-size:18px;margin:0 0 4px;}
+  .hint{color:var(--muted);margin:0 0 16px;}
+  kbd{display:inline-block;padding:1px 6px;border:1px solid var(--border);background:var(--panel);
+    border-radius:4px;font:11px/1 ui-monospace,Menlo,monospace;}
+  .row{background:var(--panel);border:1px solid var(--border);border-radius:10px;
+    padding:12px 14px;margin:10px 0;}
+  .toggle{display:flex;gap:10px;align-items:center;}
+  .toggle .box{width:15px;height:15px;border-radius:4px;background:var(--accent);
+    display:inline-flex;align-items:center;justify-content:center;color:#1c1209;font-size:11px;font-weight:800;flex-shrink:0;}
+  .toggle .box.off{background:var(--bg);border:1px solid var(--border);}
+  .sub{color:var(--muted);margin:6px 0 0 25px;font-size:12px;}
+  .indent{margin:10px 0 0 24px;padding:10px 12px;border-left:2px solid var(--border);}
+  .field{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+  .field span{font-size:12px;color:var(--muted);}
+  .field .sel{background:var(--bg);color:var(--text);border:1px solid var(--border);
+    border-radius:6px;padding:6px 28px 6px 10px;font-size:12px;min-width:180px;position:relative;}
+  .field .sel::after{content:"▾";position:absolute;right:10px;color:var(--muted);}
+  .helper-status{display:flex;align-items:center;gap:8px;margin-top:10px;padding:8px 10px;
+    background:var(--bg);border:1px solid var(--border);border-radius:8px;font-size:12px;}
+  .dot{width:8px;height:8px;border-radius:50%;background:#34c759;flex-shrink:0;
+    box-shadow:0 0 8px 1px rgba(52,199,89,.6);}
+  .linkbtn{color:var(--accent);text-decoration:underline;margin-left:auto;font-size:12px;}
+</style></head>
+<body>
+  <div class="canvas">
+    <div class="headline">
+      <h1>Send it wherever <span class="hl">Claude lives</span></h1>
+      <p>Clipboard, claude.ai, or auto-paste straight into your terminal.</p>
+    </div>
+    <div class="panelwrap">
+      <main>
+        <h2 class="t">claude-shot</h2>
+        <p class="hint">Tap the toolbar icon (or press <kbd>⌘⇧0</kbd>) to capture the visible tab.</p>
+
+        <section class="row">
+          <label class="toggle"><span class="box">✓</span>
+            <span>Auto-paste into a terminal (requires the helper)</span></label>
+          <p class="sub">When on, Send activates your terminal and pastes the screenshot for you — no manual ⌘V.</p>
+          <div class="indent">
+            <div class="field"><span>Target app</span><span class="sel">Claude Desktop</span></div>
+            <div class="helper-status"><span class="dot"></span>
+              <span>Helper connected</span><span class="linkbtn">recheck</span></div>
+          </div>
+        </section>
+
+        <section class="row">
+          <label class="toggle"><span class="box">✓</span>
+            <span>Paste directly into Claude.ai when the active tab is claude.ai</span></label>
+        </section>
+
+        <section class="row">
+          <label class="toggle"><span class="box off"></span>
+            <span>Open crop mode automatically every time</span></label>
+        </section>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
