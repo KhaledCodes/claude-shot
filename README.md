@@ -170,9 +170,19 @@ extension/
 
 ## Regenerating icons
 
+The toolbar/store icons are rendered from `store-assets/icon.html` (a coral
+camera-focus reticle) with headless Chrome, then downscaled with `sips`:
+
 ```sh
-cd extension/icons
-python3 generate.py
+CHROME="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+"$CHROME" --headless --disable-gpu --force-device-scale-factor=1 \
+  --default-background-color=00000000 \
+  --screenshot=store-assets/icon-source-512.png --window-size=512,512 \
+  "file://$PWD/store-assets/icon.html"
+for s in 16 48 128; do
+  sips -z $s $s store-assets/icon-source-512.png --out extension/icons/icon-$s.png
+done
 ```
 
-No PIL or other dependencies; pure stdlib.
+The legacy `extension/icons/generate.py` (pure-stdlib placeholder generator) is
+kept for reference but is no longer the source of the shipped icons.
