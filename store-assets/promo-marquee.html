@@ -1,0 +1,76 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+  :root{--bg:#1c1c1e;--panel:#232326;--text:#f2f2f2;--muted:#9a9aa0;--accent:#d97757;--border:#2f2f33;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{width:1400px;height:560px;overflow:hidden;
+    font:13px -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;}
+  .canvas{width:1400px;height:560px;display:flex;align-items:center;
+    background:radial-gradient(1200px 900px at 88% 20%, #3a2218 0%, #17171b 55%, #111114 100%);}
+  .left{flex:1;padding:0 0 0 80px;}
+  .brandrow{display:flex;align-items:center;gap:20px;}
+  .brandrow .word{color:#fff;font-size:54px;font-weight:700;letter-spacing:-1px;}
+  .head{color:#fff;font-size:40px;font-weight:700;line-height:1.12;margin-top:34px;letter-spacing:-0.5px;}
+  .head .hl{color:var(--accent);}
+  .sub{color:#cbbcb4;font-size:21px;margin-top:18px;font-weight:400;}
+  svg.ico{display:block;filter:drop-shadow(0 10px 26px rgba(217,119,87,.4));}
+  .right{width:620px;display:flex;align-items:center;justify-content:center;}
+  .frame{width:460px;background:var(--bg);color:var(--text);border-radius:16px;
+    border:1px solid var(--border);overflow:hidden;transform:scale(1.04) rotate(-2deg);
+    box-shadow:0 50px 110px rgba(0,0,0,.6);}
+  .bar{display:flex;align-items:center;justify-content:space-between;padding:11px 13px 9px;border-bottom:1px solid var(--border);}
+  .b-brand{font-weight:600;}
+  .from-row{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:11px;}
+  .from{color:var(--text);font-weight:500;padding:2px 8px;background:var(--panel);border-radius:999px;}
+  .iconbtn{border:1px solid var(--border);background:var(--panel);color:var(--text);width:24px;height:24px;
+    border-radius:6px;font-size:14px;display:inline-flex;align-items:center;justify-content:center;}
+  .stage{background:var(--panel);height:280px;overflow:hidden;}
+  .web{width:100%;height:280px;background:linear-gradient(160deg,#0f172a,#1e293b);color:#e2e8f0;display:flex;flex-direction:column;}
+  .web .nav{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.08);font-size:12px;}
+  .web .dot{width:9px;height:9px;border-radius:50%;background:#64748b;}
+  .web .logo{font-weight:700;color:#fff;} .web .sp{flex:1;} .web .link{color:#94a3b8;}
+  .web .hero{flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 34px;}
+  .web .hero h2{margin:0;font-size:30px;font-weight:800;color:#fff;line-height:1.1;}
+  .web .hero h2 span{color:#7dd3fc;}
+  .web .hero p{margin:12px 0 0;font-size:13px;color:#94a3b8;max-width:340px;}
+  .web .cta{margin-top:18px;display:flex;gap:10px;}
+  .web .cta .b1{background:#7dd3fc;color:#0f172a;font-weight:700;padding:8px 16px;border-radius:8px;font-size:12px;}
+  .web .cta .b2{border:1px solid rgba(255,255,255,.2);color:#e2e8f0;padding:8px 16px;border-radius:8px;font-size:12px;}
+  .actions{display:flex;gap:8px;padding:11px 13px 13px;justify-content:flex-end;align-items:center;}
+  .btn{border:1px solid var(--border);background:var(--panel);color:var(--text);padding:7px 14px;border-radius:8px;font-size:13px;font-weight:500;}
+  .btn.ghost{background:transparent;}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:#1c1209;font-weight:600;
+    box-shadow:0 0 0 4px rgba(217,119,87,.28),0 0 22px 4px rgba(217,119,87,.45);}
+</style></head>
+<body><div class="canvas">
+  <div class="left">
+    <div class="brandrow">
+      <svg class="ico" width="92" height="92" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="c" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#e58a6b"/><stop offset="1" stop-color="#cb5f3f"/></linearGradient></defs>
+        <rect x="28" y="28" width="456" height="456" rx="108" fill="url(#c)"/>
+        <g fill="none" stroke="#fff" stroke-width="30" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M150 214 L150 150 L214 150"/><path d="M298 150 L362 150 L362 214"/>
+          <path d="M362 298 L362 362 L298 362"/><path d="M214 362 L150 362 L150 298"/></g>
+        <circle cx="256" cy="256" r="34" fill="#fff"/></svg>
+      <span class="word">claude-shot</span>
+    </div>
+    <div class="head">Screenshot any tab —<br><span class="hl">straight into Claude.</span></div>
+    <div class="sub">One click to your clipboard, claude.ai, or your terminal.</div>
+  </div>
+  <div class="right">
+    <div class="frame">
+      <header class="bar"><span class="b-brand">claude-shot</span>
+        <span class="from-row"><span>from</span><span class="from">stripe.com</span>
+          <button class="iconbtn">↻</button><button class="iconbtn">⚙</button></span></header>
+      <div class="stage"><div class="web">
+        <div class="nav"><span class="dot"></span><span class="logo">stripe</span>
+          <span class="sp"></span><span class="link">Products · Pricing · Docs</span></div>
+        <div class="hero"><h2>Payments for<br><span>the internet</span></h2>
+          <p>Millions of companies use our platform to accept payments and grow revenue.</p>
+          <div class="cta"><span class="b1">Start now</span><span class="b2">Contact sales</span></div></div>
+      </div></div>
+      <div class="actions"><button class="btn ghost">Cancel</button>
+        <button class="btn ghost">Crop</button><button class="btn primary">Send</button></div>
+    </div>
+  </div>
+</div></body></html>

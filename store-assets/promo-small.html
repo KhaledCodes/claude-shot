@@ -1,0 +1,26 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{width:440px;height:280px;overflow:hidden;
+    font:13px -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;}
+  .canvas{width:440px;height:280px;
+    background:radial-gradient(520px 360px at 50% -20%, #3a2218 0%, #18181c 58%, #111114 100%);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;}
+  .word{color:#fff;font-size:34px;font-weight:700;letter-spacing:-0.5px;}
+  .tag{color:#cfa893;font-size:15px;font-weight:500;}
+  .tag b{color:#d97757;}
+  svg{display:block;filter:drop-shadow(0 8px 22px rgba(217,119,87,.35));}
+</style></head>
+<body><div class="canvas">
+  <svg width="84" height="84" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+    <defs><linearGradient id="c" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e58a6b"/><stop offset="1" stop-color="#cb5f3f"/></linearGradient></defs>
+    <rect x="28" y="28" width="456" height="456" rx="108" fill="url(#c)"/>
+    <g fill="none" stroke="#fff" stroke-width="30" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M150 214 L150 150 L214 150"/><path d="M298 150 L362 150 L362 214"/>
+      <path d="M362 298 L362 362 L298 362"/><path d="M214 362 L150 362 L150 298"/></g>
+    <circle cx="256" cy="256" r="34" fill="#fff"/>
+  </svg>
+  <div class="word">claude-shot</div>
+  <div class="tag">Screenshot any tab <b>→</b> Claude, in one click</div>
+</div></body></html>
