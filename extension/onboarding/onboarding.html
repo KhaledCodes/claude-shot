@@ -35,12 +35,11 @@
 
     <section class="setup">
       <h2>Finish setup: paste straight into your terminal</h2>
-      <p class="lead">Install the helper once and ⌘⇧S drops the screenshot directly into your Claude Code session (Terminal, iTerm, VS Code, Cursor, and more). No ⌘V. macOS only.</p>
+      <p class="lead">Install the helper once and ⌘⇧S drops the screenshot directly into your Claude Code session (Terminal, iTerm, VS Code, Cursor, and more). No ⌘V, no Xcode. macOS only.</p>
       <ol class="setup-steps">
-        <li><b>Get the helper.</b> <a id="download-link" href="#">Download it from GitHub</a> (or <code>git clone</code> the repo) so you have the <code>host/</code> folder.</li>
         <li>
-          <b>Run the installer</b> in Terminal (it downloads a prebuilt helper, no Xcode needed) and paste your extension ID when it asks:
-          <div class="cmd"><code>cd claude-shot/host &amp;&amp; bash scripts/install.sh</code><button id="copy-cmd" class="copybtn" type="button">Copy</button></div>
+          <b>Run the installer.</b> Paste this into Terminal, then enter your extension ID when it asks. It downloads the prebuilt helper, no repo or build needed:
+          <div class="cmd"><code>bash &lt;(curl -fsSL https://raw.githubusercontent.com/KhaledCodes/claude-shot/main/host/scripts/install.sh)</code><button id="copy-cmd" class="copybtn" type="button">Copy</button></div>
         </li>
         <li><b>Grant Accessibility</b> when macOS prompts (that's how it presses ⌘V into your terminal for you).</li>
         <li><b>Turn it on:</b> in <a id="settings-link" href="#">Settings</a>, enable "Auto-paste into a terminal" and pick your app. A green dot confirms it's connected.</li>

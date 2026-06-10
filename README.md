@@ -45,11 +45,10 @@ Claude Code's prompt.
 #### Install the helper (one-time)
 
 ```sh
-cd host
-bash scripts/install.sh
+bash <(curl -fsSL https://raw.githubusercontent.com/KhaledCodes/claude-shot/main/host/scripts/install.sh)
 ```
 
-The installer needs no Xcode or Swift toolchain. It:
+No clone, no Xcode, no Swift toolchain. The installer:
 1. Asks for your extension's ID (find it on `chrome://extensions`).
 2. Downloads the prebuilt, signed helper from the latest GitHub release and
    verifies its checksum.
@@ -57,8 +56,8 @@ The installer needs no Xcode or Swift toolchain. It:
 4. Registers the Chrome native-messaging manifest with that ID in your
    `allowed_origins` so only this extension can talk to the helper.
 
-Prefer to build it yourself? Run `bash scripts/install-from-source.sh` instead
-(needs the Xcode Command Line Tools).
+Prefer to build it yourself? Clone the repo and run
+`bash host/scripts/install-from-source.sh` (needs the Xcode Command Line Tools).
 
 #### Grant Accessibility
 
