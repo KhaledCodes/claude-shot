@@ -1,6 +1,6 @@
 Claude Shot is a one-keystroke bridge from your browser to Claude, built for macOS.
 
-Press ⌘⇧S and Claude Shot screenshots the active tab and sends it to Claude instantly. By default the image lands on your clipboard; switch to Claude (claude.ai, Claude Desktop, or Claude Code in your terminal) and paste with ⌘V. Want just a region? Click the toolbar icon and Crop. Install the optional helper and your screenshot drops straight into your Claude session, no ⌘V.
+Press ⌘⇧S to instantly capture the active tab, no preview and no extra clicks. With the one-time macOS helper installed, it pastes straight into your Claude Code session in your terminal (Terminal, iTerm, VS Code, Cursor, and more), no ⌘V. Without the helper, it's copied to your clipboard so you can paste it into Claude yourself (claude.ai, Claude Desktop, or Claude Code). Want just part of the page? Click the toolbar icon and Crop, and it sends the moment you're done.
 
 Built for people who are constantly screenshotting a page to ask Claude about it.
 
@@ -9,7 +9,7 @@ FEATURES
 • Crop to a region at native pixel resolution; the crop sends the moment you finish.
 • Two shortcuts: send instantly, or open the popup to crop first.
 • Opt-in: paste directly into the claude.ai chat composer when you're already on claude.ai.
-• Opt-in (macOS): install a small local helper to auto-paste straight into your terminal (no manual ⌘V), landing the image right in Claude Code.
+• Install the one-time macOS helper and screenshots auto-paste right into your Claude Code session, no ⌘V (on by default once the helper is set up).
 
 PRIVACY
 • Your screenshots never leave your device. No servers, no analytics.
