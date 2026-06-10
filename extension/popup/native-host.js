@@ -54,7 +54,7 @@ export async function pastePngViaHost(base64, bundleId) {
 
 export class HostNotInstalledError extends Error {
   constructor() {
-    super("The claude-shot helper isn't installed. Run host/scripts/install.sh.");
+    super("The Claude Shot helper isn't installed. Run host/scripts/install.sh.");
     this.name = "HostNotInstalledError";
   }
 }

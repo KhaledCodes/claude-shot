@@ -1,4 +1,4 @@
-# Chrome Web Store listing — claude-shot
+# Chrome Web Store listing: Claude Shot
 
 Copy/paste these into the Developer Dashboard fields. All wording is written to
 match the extension's actual behavior so it survives review.
@@ -6,7 +6,7 @@ match the extension's actual behavior so it survives review.
 ---
 
 ## Item name
-claude-shot
+Claude Shot
 
 ## Summary (≤132 chars)
 Screenshot the current tab and send it straight into Claude in one click.
@@ -21,11 +21,11 @@ English
 
 ## Detailed description
 
-> claude-shot is a one-click bridge from your browser to Claude.
+> Claude Shot is a one-click bridge from your browser to Claude.
 >
-> Click the toolbar icon (or press ⌘⇧0 / Ctrl+Shift+0) and claude-shot captures
+> Click the toolbar icon (or press ⌘⇧0 / Ctrl+Shift+0) and Claude Shot captures
 > the visible tab and shows you a quick preview. Hit Send and the screenshot
-> lands on your clipboard — switch to Claude (claude.ai, Claude Desktop, or
+> lands on your clipboard. Switch to Claude (claude.ai, Claude Desktop, or
 > Claude Code in your terminal) and paste with ⌘V.
 >
 > Built for people who are constantly screenshotting a page to ask Claude about
@@ -38,16 +38,16 @@ English
 > • Opt-in: paste directly into the claude.ai chat composer when you're already
 >   on claude.ai.
 > • Opt-in (macOS): install a small local helper to auto-paste straight into
->   your terminal — no manual ⌘V — landing the image right in Claude Code.
+>   your terminal (no manual ⌘V), landing the image right in Claude Code.
 >
 > PRIVACY
 > • Your screenshots never leave your device. No servers, no analytics.
-> • No access to all your websites — claude-shot only reads a tab when you
+> • No access to all your websites. Claude Shot only reads a tab when you
 >   explicitly invoke it.
 >
 > WHAT IT CAN'T CAPTURE
 > Chrome blocks tab capture on chrome:// pages, the Web Store, the new-tab page,
-> and the PDF viewer. claude-shot shows a notification instead of failing
+> and the PDF viewer. Claude Shot shows a notification instead of failing
 > silently.
 >
 > Not affiliated with or endorsed by Anthropic. "Claude" is a trademark of
@@ -56,10 +56,10 @@ English
 ---
 
 ## Single purpose (dashboard field)
-claude-shot captures a screenshot of the current browser tab and routes that
-image to Claude — by copying it to the clipboard, pasting it into an open
-claude.ai tab, or handing it to an optional local helper that pastes it into a
-terminal.
+Claude Shot captures a screenshot of the current browser tab and routes that
+image to Claude in one of three ways: copying it to the clipboard, pasting it
+into an open claude.ai tab, or handing it to an optional local helper that
+pastes it into a terminal.
 
 ---
 
@@ -81,7 +81,7 @@ terminal.
   the user can paste it into Claude.
 - **nativeMessaging** — Communicate with the optional, user-installed macOS
   helper that auto-pastes the screenshot into a terminal (opt-in).
-- **Host permissions** — None requested. claude-shot does not request access to
+- **Host permissions** — None requested. Claude Shot does not request access to
   all sites; it relies on activeTab only.
 
 ## Remote code
@@ -93,7 +93,7 @@ the package.
 ## Data usage (Privacy practices tab)
 
 Data collected: **none.** Under the Chrome Web Store definition, "collect" means
-transmitting data off the user's device. claude-shot transmits nothing — the
+transmitting data off the user's device. Claude Shot transmits nothing — the
 screenshot stays on the device (clipboard / Downloads / a local helper) until
 the user themselves pastes it somewhere.
 

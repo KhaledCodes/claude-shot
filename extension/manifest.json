@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "claude-shot",
-  "version": "0.1.1",
+  "name": "Claude Shot",
+  "version": "0.1.2",
   "description": "Screenshot a tab and send it straight into Claude in one click.",
   "permissions": ["activeTab", "scripting", "storage", "downloads", "notifications", "offscreen", "clipboardWrite", "nativeMessaging"],
   "action": {

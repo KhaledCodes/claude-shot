@@ -141,7 +141,7 @@ chrome.commands.onCommand.addListener(async (command) => {
   if (command === "capture-visible") {
     const result = await captureActive();
     if (!result.ok) {
-      await notify("claude-shot", result.error);
+      await notify("Claude Shot", result.error);
       return;
     }
     await chrome.storage.session.set({ [STASH_KEY]: result });
@@ -150,7 +150,7 @@ chrome.commands.onCommand.addListener(async (command) => {
     } catch (e) {
       await notify(
         "Screenshot ready",
-        "Click the claude-shot icon to preview and send.",
+        "Click the Claude Shot icon to preview and send.",
       );
     }
     return;
@@ -177,7 +177,7 @@ async function loadPrefs() {
 async function instantSend() {
   const result = await captureActive();
   if (!result.ok) {
-    await notify("claude-shot", result.error);
+    await notify("Claude Shot", result.error);
     return;
   }
   const base64 = result.dataUrl.replace(/^data:image\/png;base64,/, "");
@@ -191,10 +191,10 @@ async function instantSend() {
         bundleId: prefs.targetBundleId,
       });
       if (r?.ok) {
-        await notify("claude-shot", `Pasted into ${r.target ?? prefs.targetBundleId}`);
+        await notify("Claude Shot", `Pasted into ${r.target ?? prefs.targetBundleId}`);
         return;
       }
-      await notify("claude-shot", `Helper: ${r?.error ?? "rejected"}`);
+      await notify("Claude Shot", `Helper: ${r?.error ?? "rejected"}`);
       return;
     } catch (e) {
       // Helper missing or comms broken — silently fall back to clipboard.
@@ -204,8 +204,8 @@ async function instantSend() {
 
   const cb = await writeClipboardViaOffscreen(base64);
   if (cb?.ok) {
-    await notify("claude-shot", "Copied — Cmd+V in Claude");
+    await notify("Claude Shot", "Copied — Cmd+V in Claude");
   } else {
-    await notify("claude-shot", cb?.error ?? "Clipboard write failed");
+    await notify("Claude Shot", cb?.error ?? "Clipboard write failed");
   }
 }
