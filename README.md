@@ -49,12 +49,16 @@ cd host
 bash scripts/install.sh
 ```
 
-The installer:
+The installer needs no Xcode or Swift toolchain. It:
 1. Asks for your extension's ID (find it on `chrome://extensions`).
-2. Builds the Swift helper binary (`swift build -c release`).
+2. Downloads the prebuilt, signed helper from the latest GitHub release and
+   verifies its checksum.
 3. Copies it to `~/Library/Application Support/claude-shot/claude-shot-host`.
 4. Registers the Chrome native-messaging manifest with that ID in your
    `allowed_origins` so only this extension can talk to the helper.
+
+Prefer to build it yourself? Run `bash scripts/install-from-source.sh` instead
+(needs the Xcode Command Line Tools).
 
 #### Grant Accessibility
 
@@ -88,6 +92,27 @@ bash host/scripts/uninstall.sh
 
 Doesn't touch the Accessibility grant, revoke that yourself in System
 Settings if you want a clean slate.
+
+#### Releasing the helper (maintainers)
+
+`install.sh` downloads a prebuilt binary, so a release has to exist. To cut one:
+
+```sh
+# optional, for a Developer ID signature + notarization (recommended):
+export CODESIGN_IDENTITY="Developer ID Application: Your Name (TEAMID)"
+export NOTARY_PROFILE="claude-shot"   # from: xcrun notarytool store-credentials
+
+bash host/scripts/build-release.sh
+gh release create host-v1 \
+  host/dist/claude-shot-host-macos.zip \
+  host/dist/claude-shot-host-macos.zip.sha256
+```
+
+`build-release.sh` builds a universal binary when full Xcode is present (Intel +
+Apple Silicon), or this Mac's architecture with the Command Line Tools alone. A
+Developer ID signature is recommended: it keeps the Accessibility grant stable
+across versions. Without it the binary is ad-hoc signed, which still works for
+the curl-install path.
 
 ### Platform support
 

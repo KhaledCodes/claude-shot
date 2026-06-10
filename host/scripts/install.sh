@@ -1,12 +1,17 @@
 #!/usr/bin/env bash
-# claude-shot helper installer.
-# Builds the Swift host, copies it into ~/Library/Application Support/claude-shot,
-# writes the Chrome native-messaging manifest, and prints next steps.
+# claude-shot helper installer (prebuilt binary, no Xcode/Swift needed).
+#
+# Downloads the prebuilt macOS helper from the latest GitHub release, installs it
+# into ~/Library/Application Support/claude-shot, registers the Chrome
+# native-messaging manifest for your extension, and opens the Accessibility pane.
+#
+# Building locally instead? Use install-from-source.sh.
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-HOST_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
-cd "$HOST_ROOT"
+REPO="KhaledCodes/claude-shot"
+ASSET="claude-shot-host-macos.zip"
+INSTALL_DIR="$HOME/Library/Application Support/claude-shot"
+INSTALL_BIN="$INSTALL_DIR/claude-shot-host"
 
 bold() { printf "\033[1m%s\033[0m\n" "$*"; }
 green() { printf "\033[32m%s\033[0m\n" "$*"; }
@@ -16,54 +21,64 @@ gray() { printf "\033[2m%s\033[0m\n" "$*"; }
 bold "claude-shot helper installer"
 echo
 
-# 1. Xcode CLI tools
-if ! xcode-select -p >/dev/null 2>&1; then
-  red "Xcode Command Line Tools are required to build the helper."
-  echo "Install them with:"
-  echo "    xcode-select --install"
-  echo "Then re-run this script."
-  exit 1
-fi
-
-# 2. Extension ID
-bold "Step 1 of 3: get your extension's ID"
-gray "  1. Open chrome://extensions in Chrome"
-gray "  2. Turn on Developer mode (top-right) if it isn't already"
-gray "  3. Find the claude-shot card and copy its ID, a 32-letter string"
+# 1. Extension ID
+bold "Step 1 of 4: your extension's ID"
+gray "  1. Open chrome://extensions"
+gray "  2. Turn on Developer mode (top-right)"
+gray "  3. Copy Claude Shot's ID, a 32-letter string"
 echo
 read -r -p "Paste extension ID: " EXT_ID
 if ! [[ "$EXT_ID" =~ ^[a-p]{32}$ ]]; then
   red "That doesn't look like a valid Chrome extension ID."
-  echo "Expected 32 lowercase letters in the range a–p. Got: '$EXT_ID'"
+  echo "Expected 32 lowercase letters in the range a-p. Got: '$EXT_ID'"
   exit 1
 fi
 echo
 
-# 3. Build
-bold "Step 2 of 3: building the helper"
-gray "  swift build -c release  (10–40 seconds on first run)"
-swift build -c release
-BUILD_BIN="$(swift build -c release --show-bin-path)/ClaudeShotHost"
-if [ ! -f "$BUILD_BIN" ]; then
-  red "Build succeeded but binary wasn't found at:"
-  echo "  $BUILD_BIN"
+# 2. Download the prebuilt binary from the latest release.
+bold "Step 2 of 4: downloading the helper"
+TMP="$(mktemp -d)"
+trap 'rm -rf "$TMP"' EXIT
+API="https://api.github.com/repos/$REPO/releases/latest"
+RELEASE_JSON="$(curl -fsSL "$API" || true)"
+URL="$(printf '%s' "$RELEASE_JSON" | grep -o "https://[^\"]*/$ASSET" | head -1 || true)"
+SUMURL="$(printf '%s' "$RELEASE_JSON" | grep -o "https://[^\"]*/$ASSET.sha256" | head -1 || true)"
+if [ -z "$URL" ]; then
+  red "Couldn't find $ASSET in the latest release of $REPO."
+  echo "Check https://github.com/$REPO/releases, or build locally with install-from-source.sh"
+  exit 1
+fi
+curl -fsSL "$URL" -o "$TMP/$ASSET"
+gray "  ✓ downloaded $ASSET"
+
+# Verify checksum when the release publishes one.
+if [ -n "$SUMURL" ]; then
+  curl -fsSL "$SUMURL" -o "$TMP/$ASSET.sha256"
+  if ( cd "$TMP" && shasum -a 256 -c "$ASSET.sha256" >/dev/null 2>&1 ); then
+    gray "  ✓ checksum verified"
+  else
+    red "Checksum verification failed, refusing to install."
+    exit 1
+  fi
+else
+  gray "  (no checksum published for this release; skipping verification)"
+fi
+
+unzip -oq "$TMP/$ASSET" -d "$TMP"
+if [ ! -f "$TMP/claude-shot-host" ]; then
+  red "Downloaded archive didn't contain claude-shot-host."
   exit 1
 fi
 
-INSTALL_DIR="$HOME/Library/Application Support/claude-shot"
-INSTALL_BIN="$INSTALL_DIR/claude-shot-host"
+# 3. Install + register.
 mkdir -p "$INSTALL_DIR"
-cp "$BUILD_BIN" "$INSTALL_BIN"
+cp "$TMP/claude-shot-host" "$INSTALL_BIN"
 chmod +x "$INSTALL_BIN"
-# Ad-hoc codesign with a stable identifier. Doesn't fully prevent TCC from
-# asking to re-grant on rebuild (cdhash still changes), but gives macOS a
-# consistent name to associate with the entry instead of an opaque path.
-codesign --sign - --force --identifier com.claudeshot.host "$INSTALL_BIN" >/dev/null 2>&1 || true
-green "  ✓ Helper binary installed at $INSTALL_BIN"
+# Strip the quarantine flag in case it was set, so the helper launches cleanly.
+xattr -dr com.apple.quarantine "$INSTALL_BIN" 2>/dev/null || true
+green "  ✓ Helper installed at $INSTALL_BIN"
 
-# 4. Native messaging manifests, drop into every Chromium-family browser
-# we recognise, so the helper works in whichever browser actually hosts the
-# extension. Each browser keeps its own NativeMessagingHosts directory.
+bold "Step 3 of 4: registering with your browser(s)"
 declare -a BROWSER_DIRS=(
   "$HOME/Library/Application Support/Google/Chrome/NativeMessagingHosts"
   "$HOME/Library/Application Support/Google/Chrome Beta/NativeMessagingHosts"
@@ -83,54 +98,32 @@ MANIFEST_CONTENT=$(cat <<JSON
 }
 JSON
 )
-
 INSTALLED_COUNT=0
 for parent in "${BROWSER_DIRS[@]}"; do
-  parent_root="$(dirname "$parent")"
-  if [ -d "$parent_root" ]; then
+  if [ -d "$(dirname "$parent")" ]; then
     mkdir -p "$parent"
     printf '%s\n' "$MANIFEST_CONTENT" > "$parent/$MANIFEST_NAME"
     INSTALLED_COUNT=$((INSTALLED_COUNT + 1))
-    gray "  ✓ Registered in $parent"
+    gray "  ✓ $parent"
   fi
 done
 if [ "$INSTALLED_COUNT" -eq 0 ]; then
   red "Couldn't find any Chromium-family browser data directory."
-  echo "If you're using a less common Chromium fork, drop this file manually:"
-  echo
-  echo "  $MANIFEST_NAME (path varies per browser)"
-  echo "  contents:"
-  echo "$MANIFEST_CONTENT"
   exit 1
 fi
-green "  ✓ Native messaging manifest written ($INSTALLED_COUNT browser(s))"
 echo
 
-# 5. Accessibility, open the right Settings pane and explain.
-bold "Step 3 of 3: grant Accessibility permission"
-gray "  The helper needs Accessibility to post a ⌘V keystroke into your"
-gray "  terminal. macOS *sometimes* prompts on first auto-paste, but for"
-gray "  native-messaging subprocesses the prompt is unreliable, so we'll"
-gray "  open the right Settings pane now and you can grant it up front."
-echo
+# 4. Accessibility.
+bold "Step 4 of 4: grant Accessibility"
+gray "  The helper needs Accessibility to post a ⌘V keystroke into your terminal."
 echo "In the System Settings panel that's about to open:"
-echo "  1. Click the +  button under the Accessibility list"
-echo "  2. Press ⌘⇧G (Go to folder) and paste:"
-echo "       $INSTALL_DIR"
-echo "  3. Pick claude-shot-host and click Open"
-echo "  4. Toggle the new row on"
-echo
-echo "Tip: you can also drag this path into the + dialog:"
-echo "  $INSTALL_BIN"
+echo "  1. Click the +  under the Accessibility list"
+echo "  2. Press ⌘⇧G and paste:  $INSTALL_DIR"
+echo "  3. Pick claude-shot-host and click Open, then toggle it on"
 echo
 sleep 1
 open "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility" || true
 
 echo
 green "Install complete."
-echo
-echo "Next:"
-echo "  1. In the claude-shot extension's options, turn on"
-echo "     'Auto-paste into a terminal' and pick your target app."
-echo "  2. Try it. If you skipped the Accessibility step above, claude-shot"
-echo "     will surface a clear error the first time you click Send."
+echo "Next: in Claude Shot's options, turn on 'Auto-paste into a terminal' and pick your app."
