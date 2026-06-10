@@ -175,7 +175,7 @@ chrome.commands.onCommand.addListener(async (command) => {
 async function loadPrefs() {
   const { prefs } = await chrome.storage.local.get("prefs");
   return {
-    autoPaste: false,
+    autoPaste: true,
     targetBundleId: "com.apple.Terminal",
     ...(prefs ?? {}),
   };

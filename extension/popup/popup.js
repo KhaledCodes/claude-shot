@@ -50,7 +50,7 @@ let state = {
   prefs: {
     directPaste: false,
     defaultArea: false,
-    autoPaste: false,
+    autoPaste: true,
     targetBundleId: "com.apple.Terminal",
   },
 };

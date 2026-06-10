@@ -3,7 +3,7 @@ import { pingHost, labelForBundle } from "../popup/native-host.js";
 const DEFAULTS = {
   directPaste: false,
   defaultArea: false,
-  autoPaste: false,
+  autoPaste: true,
   targetBundleId: "com.apple.Terminal",
 };
 
