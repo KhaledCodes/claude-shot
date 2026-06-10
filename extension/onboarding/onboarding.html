@@ -25,24 +25,34 @@
     <ol class="steps">
       <li>
         <b>Press ⌘⇧S and it's sent to Claude instantly.</b> No preview, no extra clicks. That's the whole point.
-        <span class="note">By default the screenshot is copied to your clipboard, ready to paste. Turn on the opt-ins below to drop it straight into claude.ai or your terminal instead. <a id="shortcut-link" href="#">Change the shortcut</a></span>
+        <span class="note">Out of the box the screenshot is copied to your clipboard, ready to paste. <a id="shortcut-link" href="#">Change the shortcut</a></span>
       </li>
       <li>
         <b>Just want part of the page? Click the icon, then Crop.</b> Drag a region and it sends the instant you're done.
-        <span class="note">Cropping is instant-send too, no extra step. Or click the icon and hit Send to grab the whole tab.</span>
-      </li>
-      <li>
-        <b>Optional, in settings:</b> paste directly into a claude.ai tab, or auto-paste into your terminal (macOS).
-        <span class="note">Pin the icon too (puzzle-piece in the toolbar, then the pin) so it's always one keystroke away.</span>
+        <span class="note">Or click the icon and hit Send to grab the whole tab.</span>
       </li>
     </ol>
+
+    <section class="setup">
+      <h2>Finish setup: paste straight into your terminal</h2>
+      <p class="lead">Install the helper once and ⌘⇧S drops the screenshot directly into your Claude Code session (Terminal, iTerm, VS Code, Cursor, and more). No ⌘V. macOS only.</p>
+      <ol class="setup-steps">
+        <li><b>Get the helper.</b> <a id="download-link" href="#">Download it from GitHub</a> (or <code>git clone</code> the repo) so you have the <code>host/</code> folder.</li>
+        <li>
+          <b>Run the installer</b> in Terminal, and paste your extension ID when it asks:
+          <div class="cmd"><code>cd claude-shot/host &amp;&amp; bash scripts/install.sh</code><button id="copy-cmd" class="copybtn" type="button">Copy</button></div>
+        </li>
+        <li><b>Grant Accessibility</b> when macOS prompts (that's how it presses ⌘V into your terminal for you).</li>
+        <li><b>Turn it on:</b> in <a id="settings-link" href="#">Settings</a>, enable "Auto-paste into a terminal" and pick your app. A green dot confirms it's connected.</li>
+      </ol>
+    </section>
 
     <div class="cta">
       <button id="try" class="btn primary" type="button">Try it now</button>
       <button id="settings" class="btn" type="button">Open settings</button>
     </div>
 
-    <p class="foot">Want auto-paste into your terminal (macOS)? <a id="helper-link" href="#">Set up the helper →</a></p>
+    <p class="foot">Prefer claude.ai? Turn on direct paste in Settings. Pin the icon (puzzle-piece in the toolbar, then the pin) so it's always one keystroke away.</p>
   </main>
   <script src="onboarding.js"></script>
 </body>
