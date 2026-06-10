@@ -19,5 +19,5 @@ export function targetLabel(target) {
 }
 
 export function sendButtonLabel(target) {
-  return target === "claude-ai" ? "Paste into Claude.ai" : "Copy — Cmd+V in Claude";
+  return target === "claude-ai" ? "Paste into Claude.ai" : "Copy. Cmd+V in Claude";
 }

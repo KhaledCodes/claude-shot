@@ -19,8 +19,8 @@ running.
 2. **Click the claude-shot toolbar icon** (or press **⌘⇧0**). It screenshots
    the tab that's currently active and opens a preview.
 3. **Click Send.** The image goes onto your system clipboard.
-4. **Switch to your Claude window** — this terminal, Claude Desktop, claude.ai
-   — and press **⌘V**.
+4. **Switch to your Claude window** (this terminal, Claude Desktop, claude.ai)
+   and press **⌘V**.
 
 The popup header shows the hostname of the captured tab so you always know
 which page got screenshotted. There's a small **↻** button next to it if you
@@ -84,7 +84,7 @@ falls back to the regular clipboard path and tells you what happened.
 bash host/scripts/uninstall.sh
 ```
 
-Doesn't touch the Accessibility grant — revoke that yourself in System
+Doesn't touch the Accessibility grant, revoke that yourself in System
 Settings if you want a clean slate.
 
 ### Platform support
@@ -92,10 +92,10 @@ Settings if you want a clean slate.
 | Surface                | Phase 1 (clipboard) | Phase 2 (auto-paste) |
 | ---------------------- | ------------------- | -------------------- |
 | macOS                  | ✓                   | ✓                    |
-| Windows                | ✓                   | Not yet — see below  |
+| Windows                | ✓                   | Not yet, see below  |
 | Linux                  | ✓ (untested)        | Not yet              |
 
-The clipboard path is just the extension — works on any platform Chrome runs
+The clipboard path is just the extension, works on any platform Chrome runs
 on. The auto-paste path is the Swift native-messaging helper, which uses
 macOS-only APIs (`NSPasteboard`, `CGEventPost`, `NSRunningApplication`). A
 Windows port would need a separate native binary (Rust or C# is cleanest),
@@ -121,13 +121,13 @@ Open the extension's options (right-click the icon → **Options**) to:
 
 claude-shot asks for only what it needs:
 
-- `activeTab` — read the page you're on when you invoke the extension, to
+- `activeTab`, read the page you're on when you invoke the extension, to
   screenshot it
-- `scripting` — inject the Claude.ai paste helper into a claude.ai tab
-- `storage` — remember your preferences and stash the captured PNG between the
+- `scripting`, inject the Claude.ai paste helper into a claude.ai tab
+- `storage`, remember your preferences and stash the captured PNG between the
   service worker and the popup
-- `downloads` — fallback when the system clipboard refuses the image
-- `notifications` — tell you when a capture is blocked (e.g. chrome:// pages)
+- `downloads`, fallback when the system clipboard refuses the image
+- `notifications`, tell you when a capture is blocked (e.g. chrome:// pages)
 
 No `<all_urls>` host permission. Screenshots never leave your device unless you
 paste them somewhere yourself.
@@ -153,7 +153,7 @@ this happens instead of failing silently.
 ```
 extension/
   manifest.json
-  background.js              # service worker — capture + stash + command handling
+  background.js              # service worker, capture + stash + command handling
   popup/
     popup.html               # preview UI
     popup.js                 # orchestrator: capture → render → send

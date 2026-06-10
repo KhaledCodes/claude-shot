@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Removes the claude-shot helper binary and native-messaging manifests.
-# Does NOT remove the Accessibility grant — you can revoke that yourself in
+# Does NOT remove the Accessibility grant, you can revoke that yourself in
 # System Settings → Privacy & Security → Accessibility.
 set -euo pipefail
 
@@ -32,7 +32,7 @@ if [ -d "$INSTALL_DIR" ]; then
 fi
 
 if [ "$removed_any" -eq 0 ]; then
-  echo "Nothing to remove — looks like claude-shot helper isn't installed."
+  echo "Nothing to remove, looks like claude-shot helper isn't installed."
 else
   echo
   echo "Done. If you'd like to fully revoke permissions, also remove the"

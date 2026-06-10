@@ -236,7 +236,7 @@ async function send() {
           const fb = await writePngToClipboard(state.blob);
           showResult({
             ok: true,
-            title: "Copied — Cmd+V in Claude",
+            title: "Copied. Cmd+V in Claude",
             sub: `Helper isn't installed yet. Image is on the clipboard (via ${fb.via ?? fb.mode}). Run host/scripts/install.sh to enable auto-paste.`,
           });
           setTimeout(() => window.close(), 2800);
@@ -257,7 +257,7 @@ async function send() {
       if (r.mode === "clipboard") {
         showResult({
           ok: true,
-          title: "Copied — Cmd+V in Claude",
+          title: "Copied. Cmd+V in Claude",
           sub: `Image is on the clipboard (via ${r.via}). Switch to your Claude window and paste.`,
         });
         setTimeout(() => window.close(), 2000);
@@ -270,8 +270,8 @@ async function send() {
       }
     }
   } catch (e) {
-    // console.warn (not error) so a user-facing failure — wrong target app,
-    // helper not installed, page not capturable — doesn't trip Chrome's
+    // console.warn (not error) so a user-facing failure (wrong target app,
+    // helper not installed, page not capturable) doesn't trip Chrome's
     // dev-mode Errors badge. The popup banner already surfaces the reason
     // to the user.
     console.warn("[claude-shot] send() failed:", e);

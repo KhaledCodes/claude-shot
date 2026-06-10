@@ -26,10 +26,10 @@ if ! xcode-select -p >/dev/null 2>&1; then
 fi
 
 # 2. Extension ID
-bold "Step 1 of 3 — get your extension's ID"
+bold "Step 1 of 3: get your extension's ID"
 gray "  1. Open chrome://extensions in Chrome"
 gray "  2. Turn on Developer mode (top-right) if it isn't already"
-gray "  3. Find the claude-shot card and copy its ID — a 32-letter string"
+gray "  3. Find the claude-shot card and copy its ID, a 32-letter string"
 echo
 read -r -p "Paste extension ID: " EXT_ID
 if ! [[ "$EXT_ID" =~ ^[a-p]{32}$ ]]; then
@@ -40,7 +40,7 @@ fi
 echo
 
 # 3. Build
-bold "Step 2 of 3 — building the helper"
+bold "Step 2 of 3: building the helper"
 gray "  swift build -c release  (10–40 seconds on first run)"
 swift build -c release
 BUILD_BIN="$(swift build -c release --show-bin-path)/ClaudeShotHost"
@@ -61,7 +61,7 @@ chmod +x "$INSTALL_BIN"
 codesign --sign - --force --identifier com.claudeshot.host "$INSTALL_BIN" >/dev/null 2>&1 || true
 green "  ✓ Helper binary installed at $INSTALL_BIN"
 
-# 4. Native messaging manifests — drop into every Chromium-family browser
+# 4. Native messaging manifests, drop into every Chromium-family browser
 # we recognise, so the helper works in whichever browser actually hosts the
 # extension. Each browser keeps its own NativeMessagingHosts directory.
 declare -a BROWSER_DIRS=(
@@ -106,11 +106,11 @@ fi
 green "  ✓ Native messaging manifest written ($INSTALLED_COUNT browser(s))"
 echo
 
-# 5. Accessibility — open the right Settings pane and explain.
-bold "Step 3 of 3 — grant Accessibility permission"
+# 5. Accessibility, open the right Settings pane and explain.
+bold "Step 3 of 3: grant Accessibility permission"
 gray "  The helper needs Accessibility to post a ⌘V keystroke into your"
 gray "  terminal. macOS *sometimes* prompts on first auto-paste, but for"
-gray "  native-messaging subprocesses the prompt is unreliable — so we'll"
+gray "  native-messaging subprocesses the prompt is unreliable, so we'll"
 gray "  open the right Settings pane now and you can grant it up front."
 echo
 echo "In the System Settings panel that's about to open:"

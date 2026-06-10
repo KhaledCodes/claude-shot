@@ -1,15 +1,15 @@
-# claude-shot — Privacy Policy
+# Claude Shot Privacy Policy
 
-_Last updated: 2026-06-06_
+_Last updated: 2026-06-09_
 
-claude-shot is a Chrome extension that captures a screenshot of the tab you're
-viewing and helps you get that image into Claude — via your system clipboard, a
+Claude Shot is a Chrome extension that captures a screenshot of the tab you're
+viewing and helps you get that image into Claude, via your system clipboard, a
 direct paste into a claude.ai tab, or an optional helper that pastes into your
 terminal.
 
 ## What we collect
 
-**Nothing.** claude-shot has no servers and no analytics. It does not transmit
+**Nothing.** Claude Shot has no servers and no analytics. It does not transmit
 your screenshots, your browsing data, or any personal information off your
 device to the developer or to any third party.
 
@@ -28,8 +28,8 @@ is handled entirely on your own machine:
   image is inserted into that page in your browser; it is not sent anywhere by
   the extension. You decide whether to actually submit it to Claude.
 - **Auto-paste into a terminal (opt-in, macOS only):** If you install the
-  optional native helper, the image is passed to that helper — a program running
-  locally on your own computer — which pastes it into the terminal app you
+  optional native helper, the image is passed to that helper, a program running
+  locally on your own computer, which pastes it into the terminal app you
   selected. The helper has no network access and sends nothing to the internet.
 
 ## What is stored locally
@@ -42,14 +42,14 @@ is handled entirely on your own machine:
 
 ## Permissions
 
-claude-shot requests only the permissions needed for the behavior above
+Claude Shot requests only the permissions needed for the behavior above
 (`activeTab`, `scripting`, `storage`, `downloads`, `notifications`, `offscreen`,
 `clipboardWrite`, `nativeMessaging`). It does **not** request broad host access
 to all websites.
 
 ## Third parties
 
-claude-shot does not sell or share data with third parties. When you choose to
+Claude Shot does not sell or share data with third parties. When you choose to
 paste a screenshot into claude.ai or into Claude Code, your subsequent use of
 those products is governed by Anthropic's own privacy policy.
 

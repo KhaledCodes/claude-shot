@@ -162,7 +162,7 @@ chrome.commands.onCommand.addListener(async (command) => {
 });
 
 // Instant-send path: capture the active tab and immediately route the PNG to
-// the user's configured destination — native host with their target app if
+// the user's configured destination: native host with their target app if
 // auto-paste is on, otherwise the system clipboard via the offscreen doc.
 // No popup, no confirm. Lives entirely in the service worker.
 async function loadPrefs() {
@@ -197,14 +197,14 @@ async function instantSend() {
       await notify("Claude Shot", `Helper: ${r?.error ?? "rejected"}`);
       return;
     } catch (e) {
-      // Helper missing or comms broken — silently fall back to clipboard.
+      // Helper missing or comms broken; silently fall back to clipboard.
       console.warn("[claude-shot] instant-send via host failed, falling back:", e);
     }
   }
 
   const cb = await writeClipboardViaOffscreen(base64);
   if (cb?.ok) {
-    await notify("Claude Shot", "Copied — Cmd+V in Claude");
+    await notify("Claude Shot", "Copied. Cmd+V in Claude");
   } else {
     await notify("Claude Shot", cb?.error ?? "Clipboard write failed");
   }

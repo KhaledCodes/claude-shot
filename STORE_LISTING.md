@@ -65,23 +65,23 @@ pastes it into a terminal.
 
 ## Permission justifications (paste one per permission)
 
-- **activeTab** — Capture a screenshot of the tab the user is currently viewing,
+- **activeTab**: Capture a screenshot of the tab the user is currently viewing,
   only at the moment the user invokes the extension.
-- **scripting** — Inject a small helper into a claude.ai tab to place the
+- **scripting**: Inject a small helper into a claude.ai tab to place the
   screenshot into the chat composer (opt-in feature only).
-- **storage** — Save the user's preferences and temporarily hold the captured
+- **storage**: Save the user's preferences and temporarily hold the captured
   PNG so it can pass between the background service worker and the popup.
-- **downloads** — Save the screenshot as a file as a fallback when the system
+- **downloads**: Save the screenshot as a file as a fallback when the system
   clipboard refuses the image.
-- **notifications** — Tell the user when a capture can't be performed (e.g. on a
+- **notifications**: Tell the user when a capture can't be performed (e.g. on a
   chrome:// page).
-- **offscreen** — Host a focused document needed to perform the asynchronous
+- **offscreen**: Host a focused document needed to perform the asynchronous
   Clipboard API write, which the popup cannot reliably do on macOS.
-- **clipboardWrite** — Write the captured screenshot to the system clipboard so
+- **clipboardWrite**: Write the captured screenshot to the system clipboard so
   the user can paste it into Claude.
-- **nativeMessaging** — Communicate with the optional, user-installed macOS
+- **nativeMessaging**: Communicate with the optional, user-installed macOS
   helper that auto-pastes the screenshot into a terminal (opt-in).
-- **Host permissions** — None requested. Claude Shot does not request access to
+- **Host permissions**: None requested. Claude Shot does not request access to
   all sites; it relies on activeTab only.
 
 ## Remote code
@@ -93,7 +93,7 @@ the package.
 ## Data usage (Privacy practices tab)
 
 Data collected: **none.** Under the Chrome Web Store definition, "collect" means
-transmitting data off the user's device. Claude Shot transmits nothing — the
+transmitting data off the user's device. Claude Shot transmits nothing, the
 screenshot stays on the device (clipboard / Downloads / a local helper) until
 the user themselves pastes it somewhere.
 
@@ -102,7 +102,7 @@ Leave every data-type checkbox **unchecked**, and certify all three:
 - ☑ I do not use or transfer user data for purposes unrelated to the single purpose.
 - ☑ I do not use or transfer user data to determine creditworthiness / for lending.
 
-Privacy policy URL: (host PRIVACY.md somewhere public — see SUBMISSION.md)
+Privacy policy URL: (host PRIVACY.md somewhere public, see SUBMISSION.md)
 
 ---
 
@@ -110,12 +110,12 @@ Privacy policy URL: (host PRIVACY.md somewhere public — see SUBMISSION.md)
 
 | Asset | Size | Status |
 | --- | --- | --- |
-| Store icon | 128×128 PNG | Have `extension/icons/icon-128.png` (placeholder — see note) |
-| Screenshots | 1280×800 or 640×400 PNG/JPEG, 1–5 images | **Need to create** — at least 1 |
+| Store icon | 128×128 PNG | Have `extension/icons/icon-128.png` (placeholder, see note) |
+| Screenshots | 1280×800 or 640×400 PNG/JPEG, 1–5 images | **Need to create**: at least 1 |
 | Small promo tile (optional) | 440×280 | Optional |
 | Marquee promo (optional) | 1400×560 | Optional |
 
 Screenshot ideas (1280×800): (1) the popup preview over a real webpage,
 (2) the crop drag in progress, (3) the options page with auto-paste target
-selected. A public listing looks unfinished with zero screenshots — add at
+selected. A public listing looks unfinished with zero screenshots, add at
 least one.

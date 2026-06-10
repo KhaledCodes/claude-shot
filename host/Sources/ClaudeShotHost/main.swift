@@ -5,7 +5,7 @@
 //
 // macOS only. Built with `swift build -c release`. Installed by
 // `scripts/install.sh`. Requires Accessibility permission for the keystroke
-// post — granted to this binary's path in System Settings → Privacy &
+// post, granted to this binary's path in System Settings → Privacy &
 // Security → Accessibility.
 
 import AppKit
@@ -138,7 +138,7 @@ func activateApp(bundleId: String) throws -> String {
   }
   app.activate(options: [.activateIgnoringOtherApps])
   // Poll NSWorkspace.frontmostApplication until the target is actually
-  // frontmost (or until we hit a 600ms cap). A fixed sleep was racy —
+  // frontmost (or until we hit a 600ms cap). A fixed sleep was racy:
   // activation can take 50ms or 350ms depending on Spaces, window count,
   // and whether the app was hidden. Posting ⌘V before activation completes
   // delivers the keystroke to whatever app *was* frontmost (usually Chrome).
@@ -170,7 +170,7 @@ func postCommandV() throws {
   // Wait briefly for any held modifier keys to be released. This prevents
   // bleed-through from the hotkey: if the user is still pressing ⌘⇧ when we
   // post our event, the system can merge those flags in and turn ⌘V into
-  // ⌘⇧V (which terminals ignore). We poll the live HID flag state — this is
+  // ⌘⇧V (which terminals ignore). We poll the live HID flag state, this is
   // observable from any process, no special permission needed.
   let interfering: CGEventFlags = [
     .maskCommand, .maskShift, .maskAlternate, .maskControl,
