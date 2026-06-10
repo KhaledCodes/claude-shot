@@ -17,7 +17,6 @@ const els = {
   capturedFrom: document.getElementById("captured-from"),
   retake: document.getElementById("retake"),
   settings: document.getElementById("settings"),
-  shortcuts: document.getElementById("shortcuts"),
   error: document.getElementById("error"),
   cancel: document.getElementById("cancel"),
   send: document.getElementById("send"),
@@ -365,12 +364,6 @@ els.send.addEventListener("click", send);
 els.retake.addEventListener("click", retake);
 els.settings.addEventListener("click", () => {
   chrome.runtime.openOptionsPage();
-  window.close();
-});
-// Chrome forbids navigating to chrome:// via a link, but an extension may open
-// the shortcuts page programmatically. No extra permission needed for tabs.create.
-els.shortcuts.addEventListener("click", () => {
-  chrome.tabs.create({ url: "chrome://extensions/shortcuts" });
   window.close();
 });
 els.cropBtn.addEventListener("click", () => setCropMode(true));

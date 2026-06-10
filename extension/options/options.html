@@ -64,9 +64,16 @@
         <p class="sub">Off by default — the popup captures the whole visible tab and you crop from the preview if you want.</p>
       </section>
 
+      <section class="row">
+        <button type="button" id="open-shortcuts" class="rowbtn">
+          <span>Change keyboard shortcut</span>
+          <span class="chev" aria-hidden="true">›</span>
+        </button>
+        <p class="row-hint">Capture + preview defaults to <kbd>⌘⇧0</kbd>. Chrome manages extension shortcuts, so this opens its shortcuts page in a new tab.</p>
+      </section>
+
       <section class="footer">
         <span id="saved" class="saved" hidden>Saved</span>
-        <span class="hint-mini">Change the shortcut at <code>chrome://extensions/shortcuts</code></span>
       </section>
     </main>
     <script src="options.js" type="module"></script>

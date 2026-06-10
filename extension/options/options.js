@@ -15,6 +15,7 @@ const els = {
   helperDot: document.getElementById("helper-dot"),
   helperText: document.getElementById("helper-text"),
   helperRecheck: document.getElementById("helper-recheck"),
+  openShortcuts: document.getElementById("open-shortcuts"),
   saved: document.getElementById("saved"),
 };
 
@@ -64,5 +65,10 @@ els.targetBundle.addEventListener("change", async () => {
   await refreshHelperStatus();
 });
 els.helperRecheck.addEventListener("click", refreshHelperStatus);
+// Chrome blocks chrome:// links, but an extension may open the shortcuts page
+// programmatically. tabs.create needs no extra permission.
+els.openShortcuts.addEventListener("click", () => {
+  chrome.tabs.create({ url: "chrome://extensions/shortcuts" });
+});
 
 load();

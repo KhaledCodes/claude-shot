@@ -58,6 +58,25 @@ kbd {
 }
 .saved { color: #34c759; }
 
+.rowbtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+}
+.rowbtn:hover { background: #2c2c30; }
+.rowbtn .chev { color: var(--muted); font-size: 16px; line-height: 1; }
+.row-hint { color: var(--muted); margin: 8px 0 0; font-size: 12px; }
+
 .indent {
   margin: 10px 0 0 0;
   padding: 10px 12px;
