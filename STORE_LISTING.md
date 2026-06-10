@@ -23,18 +23,18 @@ English
 
 > Claude Shot is a one-click bridge from your browser to Claude.
 >
-> Click the toolbar icon (or press ⌘⇧S / Ctrl+Shift+S) and Claude Shot captures
-> the visible tab and shows you a quick preview. Hit Send and the screenshot
-> lands on your clipboard. Switch to Claude (claude.ai, Claude Desktop, or
-> Claude Code in your terminal) and paste with ⌘V.
+> Press ⌘⇧S / Ctrl+Shift+S and Claude Shot screenshots the active tab and sends
+> it to Claude instantly. By default the image lands on your clipboard; switch
+> to Claude (claude.ai, Claude Desktop, or Claude Code in your terminal) and
+> paste with ⌘V. Want just a region? Click the toolbar icon and Crop.
 >
 > Built for people who are constantly screenshotting a page to ask Claude about
 > it.
 >
 > FEATURES
-> • One-click capture of the current tab, with a preview before you send.
-> • Crop to a region right in the popup, at native pixel resolution.
-> • Keyboard shortcuts: capture+preview, or capture+send instantly.
+> • Send a screenshot to Claude in one keystroke (⌘⇧S): no preview, no extra clicks.
+> • Crop to a region at native pixel resolution; the crop sends the moment you finish.
+> • Two shortcuts: send instantly, or open the popup to crop first.
 > • Opt-in: paste directly into the claude.ai chat composer when you're already
 >   on claude.ai.
 > • Opt-in (macOS): install a small local helper to auto-paste straight into

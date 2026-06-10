@@ -1,44 +1,60 @@
 <!doctype html>
 <html lang="en">
 <head><meta charset="utf-8"><style>
-  :root{--bg:#1c1c1e;--panel:#232326;--text:#f2f2f2;--muted:#9a9aa0;
-    --accent:#d97757;--border:#2f2f33;}
+  :root{
+    --bg:#1a1614; --surface:#25201c; --surface-2:#2f2925; --text:#f3ede6; --muted:#a79d92;
+    --faint:#6f675e; --accent:#d97757; --accent-hover:#e08862; --on-accent:#231009;
+    --success:#4cb96f; --border:rgba(243,237,230,.08); --border-strong:rgba(243,237,230,.16);
+  }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;width:1280px;height:800px;overflow:hidden;
     font:13px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;}
   .canvas{position:relative;width:1280px;height:800px;
-    background:radial-gradient(1100px 720px at 80% 110%, #3a2218 0%, #16161a 55%, #111114 100%);
+    background:radial-gradient(1100px 720px at 80% 110%, #3a2218 0%, #1a1614 55%, #131009 100%);
     display:flex;flex-direction:column;align-items:center;}
   .headline{margin-top:54px;text-align:center;color:#fff;}
-  .headline h1{margin:0;font-size:42px;font-weight:700;letter-spacing:-0.5px;}
+  .headline h1{margin:0;font:700 44px/1.15 ui-serif,"Iowan Old Style",Georgia,serif;letter-spacing:-0.5px;}
   .headline h1 .hl{color:var(--accent);}
-  .headline p{margin:13px 0 0;font-size:19px;color:#c7c2bf;}
+  .headline p{margin:13px 0 0;font-size:19px;color:#cbc2ba;}
   .panelwrap{margin-top:36px;transform:scale(1.28);transform-origin:top center;}
+
   /* real options styling */
-  main{padding:18px 22px;width:540px;background:var(--bg);border:1px solid var(--border);
-    border-radius:14px;box-shadow:0 40px 90px rgba(0,0,0,.55);}
-  h2.t{font-size:18px;margin:0 0 4px;}
-  .hint{color:var(--muted);margin:0 0 16px;}
-  kbd{display:inline-block;padding:1px 6px;border:1px solid var(--border);background:var(--panel);
-    border-radius:4px;font:11px/1 ui-monospace,Menlo,monospace;}
-  .row{background:var(--panel);border:1px solid var(--border);border-radius:10px;
-    padding:12px 14px;margin:10px 0;}
-  .toggle{display:flex;gap:10px;align-items:center;}
-  .toggle .box{width:15px;height:15px;border-radius:4px;background:var(--accent);
-    display:inline-flex;align-items:center;justify-content:center;color:#1c1209;font-size:11px;font-weight:800;flex-shrink:0;}
-  .toggle .box.off{background:var(--bg);border:1px solid var(--border);}
-  .sub{color:var(--muted);margin:6px 0 0 25px;font-size:12px;}
-  .indent{margin:10px 0 0 24px;padding:10px 12px;border-left:2px solid var(--border);}
+  main{padding:22px 24px;width:560px;background:var(--bg);border:1px solid var(--border-strong);
+    border-radius:16px;box-shadow:0 40px 90px rgba(0,0,0,.55);}
+  .page-head{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
+  .page-head img{width:40px;height:40px;border-radius:9px;
+    filter:drop-shadow(0 4px 14px rgba(217,119,87,.3));}
+  h2.t{font:700 22px/1.2 ui-serif,"Iowan Old Style",Georgia,serif;margin:0 0 2px;letter-spacing:-0.2px;}
+  .hint{color:var(--muted);margin:0;font-size:12px;}
+  kbd{display:inline-block;padding:2px 7px;border:1px solid var(--border-strong);border-bottom-width:2px;
+    background:linear-gradient(180deg,var(--surface-2),var(--surface));
+    border-radius:6px;font:600 11px/1.4 ui-monospace,Menlo,monospace;}
+  .row{background:var(--surface);border:1px solid var(--border);border-radius:12px;
+    padding:14px 16px;margin:10px 0;}
+  .toggle{display:flex;justify-content:space-between;align-items:center;gap:16px;}
+  .toggle .lbl{font-weight:500;}
+  .switch{position:relative;width:38px;height:22px;border-radius:999px;flex-shrink:0;
+    background:var(--accent);border:1px solid var(--accent);}
+  .switch::before{content:"";position:absolute;top:2px;left:18px;width:16px;height:16px;
+    border-radius:50%;background:#fff;}
+  .switch.off{background:var(--surface-2);border-color:var(--border-strong);}
+  .switch.off::before{left:2px;background:var(--muted);}
+  .sub{color:var(--muted);margin:8px 0 0;font-size:12px;}
+  .indent{margin:12px 0 0 12px;padding:2px 0 2px 14px;border-left:2px solid var(--border-strong);}
   .field{display:flex;align-items:center;justify-content:space-between;gap:10px;}
-  .field span{font-size:12px;color:var(--muted);}
-  .field .sel{background:var(--bg);color:var(--text);border:1px solid var(--border);
-    border-radius:6px;padding:6px 28px 6px 10px;font-size:12px;min-width:180px;position:relative;}
-  .field .sel::after{content:"▾";position:absolute;right:10px;color:var(--muted);}
-  .helper-status{display:flex;align-items:center;gap:8px;margin-top:10px;padding:8px 10px;
-    background:var(--bg);border:1px solid var(--border);border-radius:8px;font-size:12px;}
-  .dot{width:8px;height:8px;border-radius:50%;background:#34c759;flex-shrink:0;
-    box-shadow:0 0 8px 1px rgba(52,199,89,.6);}
-  .linkbtn{color:var(--accent);text-decoration:underline;margin-left:auto;font-size:12px;}
+  .field>span{font-size:12px;color:var(--muted);}
+  .field .sel{position:relative;background:var(--surface-2);color:var(--text);
+    border:1px solid var(--border-strong);border-radius:8px;padding:6px 28px 6px 10px;
+    font-size:12px;min-width:180px;}
+  .field .sel::after{content:"";position:absolute;right:10px;top:50%;width:8px;height:8px;
+    border-right:1.6px solid var(--muted);border-bottom:1.6px solid var(--muted);
+    transform:translateY(-70%) rotate(45deg);}
+  .helper-status{display:flex;align-items:center;gap:8px;margin-top:10px;padding:8px 11px;
+    background:var(--bg);border:1px solid var(--border);border-radius:8px;font-size:12px;color:var(--muted);}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--success);flex-shrink:0;
+    box-shadow:0 0 0 3px rgba(76,185,111,.15), 0 0 8px 1px rgba(76,185,111,.5);}
+  .linkbtn{color:var(--accent);text-decoration:underline;text-underline-offset:2px;
+    margin-left:auto;font-size:12px;}
 </style></head>
 <body>
   <div class="canvas">
@@ -48,12 +64,17 @@
     </div>
     <div class="panelwrap">
       <main>
-        <h2 class="t">Claude Shot</h2>
-        <p class="hint">Tap the toolbar icon (or press <kbd>⌘⇧S</kbd>) to capture the visible tab.</p>
+        <div class="page-head">
+          <img src="store-icon-128.png" alt="">
+          <div>
+            <h2 class="t">Claude Shot</h2>
+            <p class="hint">Tap the toolbar icon (or press <kbd>⌘⇧S</kbd>) to capture the visible tab.</p>
+          </div>
+        </div>
 
         <section class="row">
-          <label class="toggle"><span class="box">✓</span>
-            <span>Auto-paste into a terminal (requires the helper)</span></label>
+          <div class="toggle"><span class="lbl">Auto-paste into a terminal (requires the helper)</span>
+            <span class="switch"></span></div>
           <p class="sub">When on, Send activates your terminal and pastes the screenshot for you, no manual ⌘V.</p>
           <div class="indent">
             <div class="field"><span>Target app</span><span class="sel">Claude Desktop</span></div>
@@ -63,13 +84,13 @@
         </section>
 
         <section class="row">
-          <label class="toggle"><span class="box">✓</span>
-            <span>Paste directly into Claude.ai when the active tab is claude.ai</span></label>
+          <div class="toggle"><span class="lbl">Paste directly into Claude.ai when the active tab is claude.ai</span>
+            <span class="switch"></span></div>
         </section>
 
         <section class="row">
-          <label class="toggle"><span class="box off"></span>
-            <span>Open crop mode automatically every time</span></label>
+          <div class="toggle"><span class="lbl">Open crop mode automatically every time</span>
+            <span class="switch off"></span></div>
         </section>
       </main>
     </div>

@@ -375,8 +375,9 @@ els.cropDone.addEventListener("click", async () => {
       return;
     }
     const cropped = await cropper.cropToBlob(state.blob);
-    renderPreview(cropped);
-    setCropMode(false);
+    renderPreview(cropped);   // sets state.blob to the cropped image
+    setCropMode(false);       // tear down the crop overlay
+    await send();             // crop is instant-send: no extra Send click
   } catch (e) {
     setError(e?.message ?? "Crop failed.");
   }

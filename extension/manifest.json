@@ -24,15 +24,15 @@
   "commands": {
     "capture-visible": {
       "suggested_key": {
-        "default": "Ctrl+Shift+S",
-        "mac": "Command+Shift+S"
+        "default": "Ctrl+Shift+9",
+        "mac": "Command+Shift+9"
       },
       "description": "Capture + preview"
     },
     "capture-and-send": {
       "suggested_key": {
-        "default": "Ctrl+Shift+9",
-        "mac": "Command+Shift+9"
+        "default": "Ctrl+Shift+S",
+        "mac": "Command+Shift+S"
       },
       "description": "Capture + send instantly (no preview)"
     }

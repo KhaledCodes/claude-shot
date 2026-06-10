@@ -3,12 +3,18 @@
   <head>
     <meta charset="utf-8" />
     <title>Claude Shot · settings</title>
+    <link rel="stylesheet" href="../shared/theme.css" />
     <link rel="stylesheet" href="options.css" />
   </head>
   <body>
     <main>
-      <h1>Claude Shot</h1>
-      <p class="hint">Tap the toolbar icon (or press <kbd>⌘⇧S</kbd>) to capture the visible tab.</p>
+      <header class="page-head">
+        <img class="app-icon" src="../icons/icon-128.png" alt="" />
+        <div>
+          <h1>Claude Shot</h1>
+          <p class="hint">Press <kbd>⌘⇧S</kbd> to send a screenshot to Claude instantly, or click the toolbar icon to crop first.</p>
+        </div>
+      </header>
 
       <section class="row">
         <label class="toggle">
@@ -61,7 +67,7 @@
           <input type="checkbox" id="default-area" />
           <span>Open crop mode automatically every time</span>
         </label>
-        <p class="sub">Off by default. The popup captures the whole visible tab and you crop from the preview if you want.</p>
+        <p class="sub">Off by default. The popup shows the whole visible tab; hit Crop to grab just a region.</p>
       </section>
 
       <section class="row">
@@ -69,7 +75,7 @@
           <span>Change keyboard shortcut</span>
           <span class="chev" aria-hidden="true">›</span>
         </button>
-        <p class="row-hint">Capture + preview defaults to <kbd>⌘⇧S</kbd>. Chrome manages extension shortcuts, so this opens its shortcuts page in a new tab.</p>
+        <p class="row-hint"><kbd>⌘⇧S</kbd> sends a screenshot to Claude instantly. Chrome manages extension shortcuts, so this opens its shortcuts page in a new tab.</p>
       </section>
 
       <section class="footer">

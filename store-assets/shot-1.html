@@ -2,42 +2,48 @@
 <html lang="en">
 <head><meta charset="utf-8"><style>
   :root{
-    --bg:#1c1c1e; --panel:#232326; --text:#f2f2f2; --muted:#9a9aa0;
-    --accent:#d97757; --accent-press:#c25f3f; --border:#2f2f33; --success:#34c759;
+    --bg:#1a1614; --surface:#25201c; --surface-2:#2f2925; --text:#f3ede6; --muted:#a79d92;
+    --faint:#6f675e; --accent:#d97757; --accent-hover:#e08862; --on-accent:#231009;
+    --border:rgba(243,237,230,.08); --border-strong:rgba(243,237,230,.16);
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;width:1280px;height:800px;overflow:hidden;
     font:13px/1.4 -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;}
   .canvas{position:relative;width:1280px;height:800px;
-    background:radial-gradient(1100px 700px at 78% -8%, #3a2218 0%, #16161a 55%, #111114 100%);
+    background:radial-gradient(1100px 700px at 78% -8%, #3a2218 0%, #1a1614 55%, #131009 100%);
     display:flex;flex-direction:column;align-items:center;}
   .headline{margin-top:62px;text-align:center;color:#fff;}
-  .headline h1{margin:0;font-size:44px;font-weight:700;letter-spacing:-0.5px;}
+  .headline h1{margin:0;font:700 46px/1.15 ui-serif,"Iowan Old Style",Georgia,serif;letter-spacing:-0.5px;}
   .headline h1 .hl{color:var(--accent);}
-  .headline p{margin:14px 0 0;font-size:20px;color:#c7c2bf;font-weight:400;}
+  .headline p{margin:14px 0 0;font-size:20px;color:#cbc2ba;font-weight:400;}
 
   .stagewrap{margin-top:44px;transform:scale(1.32);transform-origin:top center;}
 
   /* ---- real popup styling ---- */
-  .frame{width:460px;background:var(--bg);color:var(--text);border-radius:14px;
-    border:1px solid var(--border);overflow:hidden;
+  .frame{width:460px;background:var(--bg);color:var(--text);border-radius:16px;
+    border:1px solid var(--border-strong);overflow:hidden;
     box-shadow:0 40px 90px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.02);}
-  .bar{display:flex;align-items:center;justify-content:space-between;
-    padding:10px 12px 8px;border-bottom:1px solid var(--border);}
-  .brand{font-weight:600;letter-spacing:.2px;}
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:8px;
+    padding:10px 12px;border-bottom:1px solid var(--border);}
+  .brand{display:inline-flex;align-items:center;gap:7px;font-weight:600;letter-spacing:.2px;}
+  .brand img{width:18px;height:18px;border-radius:4px;}
   .from-row{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:11px;}
-  .from{color:var(--text);font-weight:500;padding:2px 8px;background:var(--panel);border-radius:999px;}
-  .iconbtn{border:1px solid var(--border);background:var(--panel);color:var(--text);
-    width:24px;height:24px;border-radius:6px;font-size:14px;line-height:1;padding:0;
-    display:inline-flex;align-items:center;justify-content:center;}
-  .stage{position:relative;background:var(--panel);overflow:hidden;}
-  .shot{display:block;width:100%;height:auto;}
-  .actions{display:flex;gap:8px;padding:10px 12px 12px;justify-content:flex-end;align-items:center;}
-  .btn{border:1px solid var(--border);background:var(--panel);color:var(--text);
-    padding:7px 14px;border-radius:8px;font-size:13px;font-weight:500;}
-  .btn.ghost{background:transparent;}
-  .btn.primary{background:var(--accent);border-color:var(--accent);color:#1c1209;font-weight:600;
-    box-shadow:0 0 0 4px rgba(217,119,87,.28), 0 0 22px 4px rgba(217,119,87,.45);}
+  .from{color:var(--text);font-weight:500;padding:3px 9px;background:var(--surface);
+    border:1px solid var(--border);border-radius:999px;}
+  .iconbtn{display:inline-flex;align-items:center;justify-content:center;border:none;
+    background:transparent;color:var(--muted);width:26px;height:26px;border-radius:7px;padding:0;}
+  .iconbtn svg{width:14px;height:14px;}
+  .stage{position:relative;display:flex;align-items:center;justify-content:center;padding:12px;
+    background:radial-gradient(120% 90% at 50% 0%, rgba(217,119,87,.05), transparent 60%), var(--surface);}
+  .shot{display:block;width:100%;height:auto;border-radius:8px;
+    box-shadow:0 0 0 1px var(--border-strong), 0 10px 28px rgba(0,0,0,.45);}
+  .actions{display:flex;gap:8px;padding:10px 12px 12px;align-items:center;}
+  .btn{border:1px solid transparent;background:transparent;color:var(--muted);
+    padding:7px 14px;border-radius:8px;font-size:13px;font-weight:500;white-space:nowrap;}
+  .btn.cancel{margin-right:auto;}
+  .btn.primary{background:linear-gradient(180deg,var(--accent-hover),var(--accent));
+    color:var(--on-accent);font-weight:600;
+    box-shadow:0 0 0 4px rgba(217,119,87,.25), 0 0 22px 4px rgba(217,119,87,.4);}
 </style></head>
 <body>
   <div class="canvas">
@@ -48,20 +54,20 @@
     <div class="stagewrap">
       <div class="frame">
         <header class="bar">
-          <span class="brand">Claude Shot</span>
+          <span class="brand"><img src="store-icon-128.png" alt="">Claude Shot</span>
           <span class="from-row">
             <span>from</span>
             <span class="from">stripe.com</span>
-            <button class="iconbtn">↻</button>
-            <button class="iconbtn">⚙</button>
+            <button class="iconbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></button>
+            <button class="iconbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
           </span>
         </header>
         <div class="stage">
           <img class="shot" src="captured-stripe.png" alt="">
         </div>
         <div class="actions">
-          <button class="btn ghost">Cancel</button>
-          <button class="btn ghost">Crop</button>
+          <button class="btn cancel">Cancel</button>
+          <button class="btn">Crop</button>
           <button class="btn primary">Send to Claude</button>
         </div>
       </div>
