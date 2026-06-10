@@ -170,9 +170,3 @@ ol.setup-steps b { color: var(--text); }
   transition: border-color 120ms ease, background 120ms ease;
 }
 .copybtn:hover { border-color: var(--faint); background: var(--surface); }
-
-.foot {
-  margin-top: 24px;
-  color: var(--muted);
-  font-size: 13px;
-}
