@@ -16,7 +16,7 @@ running.
 
 1. **Navigate** the browser tab to whatever you want to screenshot (a website,
    an app you're testing, anything).
-2. **Click the claude-shot toolbar icon** (or press **⌘⇧0**). It screenshots
+2. **Click the claude-shot toolbar icon** (or press **⌘⇧S**). It screenshots
    the tab that's currently active and opens a preview.
 3. **Click Send.** The image goes onto your system clipboard.
 4. **Switch to your Claude window** (this terminal, Claude Desktop, claude.ai)

@@ -24,8 +24,8 @@
   "commands": {
     "capture-visible": {
       "suggested_key": {
-        "default": "Ctrl+Shift+0",
-        "mac": "Command+Shift+0"
+        "default": "Ctrl+Shift+S",
+        "mac": "Command+Shift+S"
       },
       "description": "Capture + preview"
     },

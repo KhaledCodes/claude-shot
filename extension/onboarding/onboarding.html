@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Welcome to Claude Shot</title>
+  <style>
+    :root{
+      --bg:#1c1c1e; --panel:#232326; --text:#f2f2f2; --muted:#9a9aa0;
+      --accent:#d97757; --accent-press:#c25f3f; --border:#2f2f33;
+    }
+    *{box-sizing:border-box;}
+    html,body{margin:0;height:100%;}
+    body{
+      background:radial-gradient(1100px 700px at 50% -10%, #3a2218 0%, #16161a 55%, #111114 100%);
+      color:var(--text);
+      font:15px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;
+      display:flex; align-items:flex-start; justify-content:center; padding:64px 24px;
+    }
+    .card{width:100%; max-width:620px;}
+    .head{display:flex; align-items:center; gap:16px;}
+    .head img{width:64px; height:64px; filter:drop-shadow(0 8px 22px rgba(217,119,87,.35));}
+    h1{margin:0; font-size:30px; font-weight:700; letter-spacing:-0.4px;}
+    .sub{margin:6px 0 0; color:#cbbcb4; font-size:17px;}
+
+    .keys{display:flex; align-items:center; gap:8px; margin:28px 0 4px;}
+    .keys .label{color:var(--muted); font-size:14px; margin-right:4px;}
+    kbd{
+      display:inline-flex; align-items:center; justify-content:center;
+      min-width:34px; height:34px; padding:0 10px;
+      border:1px solid var(--border); border-bottom-width:2px;
+      background:var(--panel); border-radius:8px;
+      font:600 16px/1 ui-monospace,SFMono-Regular,Menlo,monospace; color:var(--text);
+    }
+    .keys .plus{color:var(--muted);}
+
+    ol.steps{margin:24px 0 0; padding:0; list-style:none; counter-reset:step;}
+    ol.steps li{
+      position:relative; padding:14px 16px 14px 52px; margin:10px 0;
+      background:var(--panel); border:1px solid var(--border); border-radius:12px;
+    }
+    ol.steps li::before{
+      counter-increment:step; content:counter(step);
+      position:absolute; left:14px; top:14px;
+      width:24px; height:24px; border-radius:50%;
+      background:var(--accent); color:#1c1209; font-weight:700; font-size:13px;
+      display:flex; align-items:center; justify-content:center;
+    }
+    ol.steps b{color:#fff;}
+    ol.steps .note{color:var(--muted); font-size:13px;}
+    a{color:var(--accent); text-decoration:none;}
+    a:hover{text-decoration:underline;}
+
+    .cta{display:flex; gap:12px; align-items:center; margin-top:28px; flex-wrap:wrap;}
+    .btn{
+      border:1px solid var(--border); background:var(--panel); color:var(--text);
+      padding:10px 18px; border-radius:10px; font-size:14px; font-weight:600; cursor:pointer;
+    }
+    .btn:hover{background:#2c2c30;}
+    .btn.primary{background:var(--accent); border-color:var(--accent); color:#1c1209;}
+    .btn.primary:hover{background:var(--accent-press); border-color:var(--accent-press);}
+    .foot{margin-top:22px; color:var(--muted); font-size:13px;}
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="head">
+      <img src="../icons/icon-128.png" alt="" />
+      <div>
+        <h1>Welcome to Claude Shot</h1>
+        <p class="sub">Screenshot any tab and send it straight into Claude.</p>
+      </div>
+    </div>
+
+    <div class="keys">
+      <span class="label">Your shortcut</span>
+      <kbd>⌘</kbd><span class="plus">+</span><kbd>⇧</kbd><span class="plus">+</span><kbd>S</kbd>
+      <span class="label" style="margin-left:8px">(Ctrl+Shift+S on Windows/Linux)</span>
+    </div>
+
+    <ol class="steps">
+      <li>
+        <b>Press ⌘⇧S</b> to screenshot the visible tab and open a preview.
+        <span class="note">That's the fastest way. You can also click the toolbar icon.
+        <a id="shortcut-link" href="#">Change the shortcut</a></span>
+      </li>
+      <li>
+        Crop a region if you want, then hit <b>Send to Claude</b>.
+        <span class="note">The image lands on your clipboard, ready to paste into Claude (claude.ai, Claude Desktop, or Claude Code).</span>
+      </li>
+      <li>
+        <b>Optional, in settings:</b> paste directly into a claude.ai tab, or auto-paste into your terminal.
+        <span class="note">Pin the icon too (puzzle-piece in the toolbar, then the pin) so it's always one keystroke away.</span>
+      </li>
+    </ol>
+
+    <div class="cta">
+      <button id="try" class="btn primary" type="button">Try it now</button>
+      <button id="settings" class="btn" type="button">Open settings</button>
+    </div>
+
+    <p class="foot">Want auto-paste into your terminal (macOS)? <a id="helper-link" href="#">Set up the helper →</a></p>
+  </main>
+  <script src="onboarding.js"></script>
+</body>
+</html>

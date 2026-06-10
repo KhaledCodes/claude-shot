@@ -6,6 +6,13 @@ const STASH_KEY = "pending";
 const FORBIDDEN_SCHEMES = ["chrome:", "chrome-extension:", "edge:", "about:", "devtools:"];
 const FORBIDDEN_HOSTS = ["chrome.google.com"];
 
+// Show the welcome page once, on first install only (not on updates).
+chrome.runtime.onInstalled.addListener((details) => {
+  if (details.reason === "install") {
+    chrome.tabs.create({ url: chrome.runtime.getURL("onboarding/onboarding.html") });
+  }
+});
+
 async function getActiveTab() {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   return tab ?? null;

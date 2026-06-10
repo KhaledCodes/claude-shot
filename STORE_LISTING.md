@@ -23,7 +23,7 @@ English
 
 > Claude Shot is a one-click bridge from your browser to Claude.
 >
-> Click the toolbar icon (or press ⌘⇧0 / Ctrl+Shift+0) and Claude Shot captures
+> Click the toolbar icon (or press ⌘⇧S / Ctrl+Shift+S) and Claude Shot captures
 > the visible tab and shows you a quick preview. Hit Send and the screenshot
 > lands on your clipboard. Switch to Claude (claude.ai, Claude Desktop, or
 > Claude Code in your terminal) and paste with ⌘V.
