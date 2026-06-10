@@ -3,13 +3,20 @@
 #
 # Downloads the prebuilt macOS helper from the latest GitHub release, installs it
 # into ~/Library/Application Support/claude-shot, registers the Chrome
-# native-messaging manifest for your extension, and opens the Accessibility pane.
+# native-messaging manifest, and opens the Accessibility pane.
+#
+# The published Chrome Web Store ID is baked in, so store users need nothing.
+# Testing an unpacked (dev) build with a different ID? Pass it as an argument:
+#     bash install.sh <your-dev-extension-id>
+# and it's added alongside the published ID in allowed_origins.
 #
 # Building locally instead? Use install-from-source.sh.
 set -euo pipefail
 
 REPO="KhaledCodes/claude-shot"
 ASSET="claude-shot-host-macos.zip"
+PUBLISHED_ID="omfglkencdaogkejhbgckigiiakkbjlg"
+DEV_ID="${1:-}"
 INSTALL_DIR="$HOME/Library/Application Support/claude-shot"
 INSTALL_BIN="$INSTALL_DIR/claude-shot-host"
 
@@ -21,22 +28,13 @@ gray() { printf "\033[2m%s\033[0m\n" "$*"; }
 bold "claude-shot helper installer"
 echo
 
-# 1. Extension ID
-bold "Step 1 of 4: your extension's ID"
-gray "  1. Open chrome://extensions"
-gray "  2. Turn on Developer mode (top-right)"
-gray "  3. Copy Claude Shot's ID, a 32-letter string"
-echo
-read -r -p "Paste extension ID: " EXT_ID
-if ! [[ "$EXT_ID" =~ ^[a-p]{32}$ ]]; then
-  red "That doesn't look like a valid Chrome extension ID."
-  echo "Expected 32 lowercase letters in the range a-p. Got: '$EXT_ID'"
+if [ -n "$DEV_ID" ] && ! [[ "$DEV_ID" =~ ^[a-p]{32}$ ]]; then
+  red "That dev extension ID doesn't look valid (expected 32 letters a-p)."
   exit 1
 fi
-echo
 
-# 2. Download the prebuilt binary from the latest release.
-bold "Step 2 of 4: downloading the helper"
+# 1. Download the prebuilt binary from the latest release.
+bold "Step 1 of 3: downloading the helper"
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 API="https://api.github.com/repos/$REPO/releases/latest"
@@ -51,7 +49,6 @@ fi
 curl -fsSL "$URL" -o "$TMP/$ASSET"
 gray "  ✓ downloaded $ASSET"
 
-# Verify checksum when the release publishes one.
 if [ -n "$SUMURL" ]; then
   curl -fsSL "$SUMURL" -o "$TMP/$ASSET.sha256"
   if ( cd "$TMP" && shasum -a 256 -c "$ASSET.sha256" >/dev/null 2>&1 ); then
@@ -70,15 +67,19 @@ if [ ! -f "$TMP/claude-shot-host" ]; then
   exit 1
 fi
 
-# 3. Install + register.
 mkdir -p "$INSTALL_DIR"
 cp "$TMP/claude-shot-host" "$INSTALL_BIN"
 chmod +x "$INSTALL_BIN"
-# Strip the quarantine flag in case it was set, so the helper launches cleanly.
 xattr -dr com.apple.quarantine "$INSTALL_BIN" 2>/dev/null || true
 green "  ✓ Helper installed at $INSTALL_BIN"
 
-bold "Step 3 of 4: registering with your browser(s)"
+# 2. Register the native-messaging manifest (published ID, plus a dev ID if given).
+bold "Step 2 of 3: registering with your browser(s)"
+ORIGINS="\"chrome-extension://$PUBLISHED_ID/\""
+if [ -n "$DEV_ID" ]; then
+  ORIGINS="$ORIGINS, \"chrome-extension://$DEV_ID/\""
+  gray "  including dev ID $DEV_ID"
+fi
 declare -a BROWSER_DIRS=(
   "$HOME/Library/Application Support/Google/Chrome/NativeMessagingHosts"
   "$HOME/Library/Application Support/Google/Chrome Beta/NativeMessagingHosts"
@@ -94,7 +95,7 @@ MANIFEST_CONTENT=$(cat <<JSON
   "description": "claude-shot helper for auto-pasting screenshots into terminals",
   "path": "$INSTALL_BIN",
   "type": "stdio",
-  "allowed_origins": ["chrome-extension://$EXT_ID/"]
+  "allowed_origins": [$ORIGINS]
 }
 JSON
 )
@@ -113,8 +114,8 @@ if [ "$INSTALLED_COUNT" -eq 0 ]; then
 fi
 echo
 
-# 4. Accessibility.
-bold "Step 4 of 4: grant Accessibility"
+# 3. Accessibility.
+bold "Step 3 of 3: grant Accessibility"
 gray "  The helper needs Accessibility to post a ⌘V keystroke into your terminal."
 echo "In the System Settings panel that's about to open:"
 echo "  1. Click the +  under the Accessibility list"
@@ -126,4 +127,4 @@ open "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibil
 
 echo
 green "Install complete."
-echo "Next: in Claude Shot's options, turn on 'Auto-paste into a terminal' and pick your app."
+echo "Claude Shot's 'Auto-paste into a terminal' is on by default; pick your target app in its options."
