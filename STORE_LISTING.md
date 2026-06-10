@@ -21,7 +21,7 @@ English
 
 ## Detailed description
 
-> Claude Shot is a one-click bridge from your browser to Claude, built for macOS.
+> Claude Shot is a one-keystroke bridge from your browser to Claude, built for macOS.
 >
 > Press ⌘⇧S and Claude Shot screenshots the active tab and sends it to Claude
 > instantly. By default the image lands on your clipboard; switch to Claude
