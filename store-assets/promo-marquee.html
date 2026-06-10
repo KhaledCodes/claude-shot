@@ -23,18 +23,8 @@
   .from{color:var(--text);font-weight:500;padding:2px 8px;background:var(--panel);border-radius:999px;}
   .iconbtn{border:1px solid var(--border);background:var(--panel);color:var(--text);width:24px;height:24px;
     border-radius:6px;font-size:14px;display:inline-flex;align-items:center;justify-content:center;}
-  .stage{background:var(--panel);height:280px;overflow:hidden;}
-  .web{width:100%;height:280px;background:linear-gradient(160deg,#0f172a,#1e293b);color:#e2e8f0;display:flex;flex-direction:column;}
-  .web .nav{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.08);font-size:12px;}
-  .web .dot{width:9px;height:9px;border-radius:50%;background:#64748b;}
-  .web .logo{font-weight:700;color:#fff;} .web .sp{flex:1;} .web .link{color:#94a3b8;}
-  .web .hero{flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 34px;}
-  .web .hero h2{margin:0;font-size:30px;font-weight:800;color:#fff;line-height:1.1;}
-  .web .hero h2 span{color:#7dd3fc;}
-  .web .hero p{margin:12px 0 0;font-size:13px;color:#94a3b8;max-width:340px;}
-  .web .cta{margin-top:18px;display:flex;gap:10px;}
-  .web .cta .b1{background:#7dd3fc;color:#0f172a;font-weight:700;padding:8px 16px;border-radius:8px;font-size:12px;}
-  .web .cta .b2{border:1px solid rgba(255,255,255,.2);color:#e2e8f0;padding:8px 16px;border-radius:8px;font-size:12px;}
+  .stage{background:var(--panel);overflow:hidden;}
+  .shot{display:block;width:100%;height:auto;}
   .actions{display:flex;gap:8px;padding:11px 13px 13px;justify-content:flex-end;align-items:center;}
   .btn{border:1px solid var(--border);background:var(--panel);color:var(--text);padding:7px 14px;border-radius:8px;font-size:13px;font-weight:500;}
   .btn.ghost{background:transparent;}
@@ -55,22 +45,16 @@
       <span class="word">Claude Shot</span>
     </div>
     <div class="head">Screenshot any tab,<br><span class="hl">straight into Claude.</span></div>
-    <div class="sub">One click to your clipboard, claude.ai, or your terminal.</div>
+    <div class="sub">One click or shortcut to your clipboard, claude.ai, or your terminal.</div>
   </div>
   <div class="right">
     <div class="frame">
       <header class="bar"><span class="b-brand">Claude Shot</span>
         <span class="from-row"><span>from</span><span class="from">stripe.com</span>
           <button class="iconbtn">↻</button><button class="iconbtn">⚙</button></span></header>
-      <div class="stage"><div class="web">
-        <div class="nav"><span class="dot"></span><span class="logo">stripe</span>
-          <span class="sp"></span><span class="link">Products · Pricing · Docs</span></div>
-        <div class="hero"><h2>Payments for<br><span>the internet</span></h2>
-          <p>Millions of companies use our platform to accept payments and grow revenue.</p>
-          <div class="cta"><span class="b1">Start now</span><span class="b2">Contact sales</span></div></div>
-      </div></div>
+      <div class="stage"><img class="shot" src="captured-stripe.png" alt=""></div>
       <div class="actions"><button class="btn ghost">Cancel</button>
-        <button class="btn ghost">Crop</button><button class="btn primary">Send</button></div>
+        <button class="btn ghost">Crop</button><button class="btn primary">Send to Claude</button></div>
     </div>
   </div>
 </div></body></html>
