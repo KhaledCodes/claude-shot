@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Claude Shot",
   "version": "0.1.2",
-  "description": "Screenshot a tab and send it straight into Claude in one click.",
+  "description": "Send a screenshot of any tab straight into your Claude session. Built for macOS.",
   "permissions": ["activeTab", "scripting", "storage", "downloads", "notifications", "offscreen", "clipboardWrite", "nativeMessaging"],
   "action": {
     "default_title": "Send screenshot to Claude",

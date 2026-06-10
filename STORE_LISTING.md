@@ -9,7 +9,7 @@ match the extension's actual behavior so it survives review.
 Claude Shot
 
 ## Summary (≤132 chars)
-Screenshot the current tab and send it straight into Claude in one click.
+Send a screenshot of any tab straight into your Claude session. Built for macOS.
 
 ## Category
 Developer Tools  (alt: Productivity)
@@ -21,12 +21,13 @@ English
 
 ## Detailed description
 
-> Claude Shot is a one-click bridge from your browser to Claude.
+> Claude Shot is a one-click bridge from your browser to Claude, built for macOS.
 >
-> Press ⌘⇧S / Ctrl+Shift+S and Claude Shot screenshots the active tab and sends
-> it to Claude instantly. By default the image lands on your clipboard; switch
-> to Claude (claude.ai, Claude Desktop, or Claude Code in your terminal) and
-> paste with ⌘V. Want just a region? Click the toolbar icon and Crop.
+> Press ⌘⇧S and Claude Shot screenshots the active tab and sends it to Claude
+> instantly. By default the image lands on your clipboard; switch to Claude
+> (claude.ai, Claude Desktop, or Claude Code in your terminal) and paste with
+> ⌘V. Want just a region? Click the toolbar icon and Crop. Install the optional
+> helper and your screenshot drops straight into your Claude session, no ⌘V.
 >
 > Built for people who are constantly screenshotting a page to ask Claude about
 > it.

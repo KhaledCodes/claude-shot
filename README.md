@@ -1,8 +1,8 @@
 # claude-shot
 
-One-click screenshot → Claude. A small Chrome (Manifest V3) extension that
-captures the visible tab and routes the image to Claude wherever Claude is
-running.
+One-click screenshot → Claude, for macOS. A small Chrome (Manifest V3) extension
+that captures the visible tab and sends the image straight into your Claude
+session (claude.ai, Claude Desktop, or Claude Code).
 
 ## Install (developer build)
 
@@ -116,22 +116,12 @@ Developer ID signature is recommended: it keeps the Accessibility grant stable
 across versions. Without it the binary is ad-hoc signed, which still works for
 the curl-install path.
 
-### Platform support
+### Platform
 
-| Surface                | Phase 1 (clipboard) | Phase 2 (auto-paste) |
-| ---------------------- | ------------------- | -------------------- |
-| macOS                  | ✓                   | ✓                    |
-| Windows                | ✓                   | Not yet, see below  |
-| Linux                  | ✓ (untested)        | Not yet              |
-
-The clipboard path is just the extension, works on any platform Chrome runs
-on. The auto-paste path is the Swift native-messaging helper, which uses
-macOS-only APIs (`NSPasteboard`, `CGEventPost`, `NSRunningApplication`). A
-Windows port would need a separate native binary (Rust or C# is cleanest),
-its own installer (PowerShell or .exe), and a different native-messaging
-manifest location (Windows registry under
-`HKCU\Software\Google\Chrome\NativeMessagingHosts\`). The protocol the
-extension speaks is the same, so the extension side wouldn't change much.
+Claude Shot is built for **macOS**. The auto-paste helper relies on macOS-only
+APIs (`NSPasteboard`, `CGEventPost`, `NSRunningApplication`), and the whole
+experience is tuned for the Mac (⌘⇧S, ⌘V, the System Settings Accessibility
+flow).
 
 ### Crop a region
 
